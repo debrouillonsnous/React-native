@@ -1,21 +1,148 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
+import React, { useState } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TextInput,
+  ScrollView,
+  FlatList,
+} from "react-native";
+import LOGO from "./assets/imgs.png";
+const url = "https://reactnative.dev/img/tiny_logo.png";
+const DATA = [
+  {
+    userId: 1,
+    id: 1,
+    title:
+      "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
+  },
+  {
+    userId: 1,
+    id: 2,
+    title: "qui est esse",
+    body: "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla",
+  },
+  {
+    userId: 1,
+    id: 3,
+    title: "ea molestias quasi exercitationem repellat qui ipsa sit aut",
+    body: "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut",
+  },
+  {
+    userId: 1,
+    id: 4,
+    title: "eum et est occaecati",
+    body: "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit",
+  },
+  {
+    userId: 1,
+    id: 5,
+    title: "nesciunt quas odio",
+    body: "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque",
+  },
+  {
+    userId: 1,
+    id: 6,
+    title: "dolorem eum magni eos aperiam quia",
+    body: "ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae",
+  },
+  {
+    userId: 1,
+    id: 7,
+    title: "magnam facilis autem",
+    body: "dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas",
+  },
+  {
+    userId: 1,
+    id: 8,
+    title: "dolorem dolore est ipsam",
+    body: "dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae",
+  },
+  {
+    userId: 1,
+    id: 9,
+    title: "nesciunt iure omnis dolorem tempora et accusantium",
+    body: "consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas",
+  },
+  {
+    userId: 1,
+    id: 10,
+    title: "optio molestias id quia eum",
+    body: "quo et expedita modi cum officia vel magni\ndoloribus qui repudiandae\nvero nisi sit\nquos veniam quod sed accusamus veritatis error",
+  },
+];
+const App = () => {
+  const [state, setState] = useState("");
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.containerIm}>
+        <Image style={styles.logo} source={LOGO} />
+        <Image
+          style={styles.logo}
+          source={{
+            uri: url,
+          }}
+        />
+      </View>
+      <Text style={styles.text}>Bonjour Monsieur</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Saisir du texte"
+        value={state}
+        onChangeText={(value) => setState(value)}
+      />
+      
+      <FlatList
+        data={DATA}
+        renderItem={(item) => (
+          <Text style={styles.item}>{item.item.title}</Text>
+        )}
+        keyExtractor={(item) => item.id.toString()}
+      />
     </View>
   );
-}
-
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderWidth: 1,
+    flexDirection: "column",
+    height: "100%",
+    width: "100%",
+    backgroundColor: "green",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  containerIm: {
+    flexDirection: "row",
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "bold",
+    paddingBottom: 20,
+  },
+  input: {
+    borderWidth: 1,
+    height: 30,
+    width: 300,
+    fontSize: 25,
+    color: "black",
+    marginBottom:10,
+  },
+
+  logo: {
+    width: 66,
+    height: 58,
+    margin: 10,
+    marginTop:50
+  },
+  item: {
+    borderWidth: 2,
+    borderColor: "#fff",
+    padding:10
   },
 });
+export default App;
